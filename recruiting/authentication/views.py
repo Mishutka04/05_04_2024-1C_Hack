@@ -8,9 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView
 import uuid
-from authentication.forms import LoginUserForm, RegisterUserForm, ProfileEditForm, ProfilePasswordChangeForm, \
-    CodeGeneratorForm
-from authentication.models import Code
+from authentication.forms import LoginUserForm, RegisterUserForm, ProfileEditForm, ProfilePasswordChangeForm
 
 
 # Create your views here.
@@ -89,29 +87,3 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('subject'))
 
-
-def generator_code(request):
-    if request.method == "POST":
-        form = CodeGeneratorForm(request.POST)
-        if form.is_valid():
-            try:
-                user_email = request.POST.get("email")
-                code = Code.objects.filter(email=user_email)
-                if code:
-                    return render(request, 'authentication/code_create.html', context={"status": "На данный email уже отправлен код!"})
-                uuid_code = uuid.uuid4()
-                Code.objects.create(email=user_email, code=uuid_code)
-                send_mail(
-                    'Код регистрации на сайте',  # Заголовок Сообщения
-                    f'Привет, вот твой код для регистрации на нашем сайте - {uuid_code}',  # Контент
-                    'django-smpt-vus@yandex.ru',
-                    [user_email],
-                )
-                return render(request, 'authentication/code_create.html',
-                              context={"status": "Письмо успешно отправлено!"})
-            except:
-                return render(request, 'authentication/code_create.html',
-                              context={"status": "Данному пользователю уже отправлен код доступа"})
-    else:
-        form = CodeGeneratorForm()
-    return render(request, 'authentication/code_create.html', context={"form": form})

@@ -4,8 +4,6 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 
-from authentication.models import Code
-
 
 class LoginUserForm(AuthenticationForm):
     # username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
@@ -20,7 +18,6 @@ class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={"class": "form_input"}))
     password1 = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={"class": "form_input"}))
     password2 = forms.CharField(label="Повтор пароля", widget=forms.PasswordInput(attrs={"class": "form_input"}))
-    code = forms.CharField(label='Индивидуальный код', widget=forms.TextInput(attrs={"class": "form_input"}))
 
     class Meta:
         model = get_user_model()
@@ -48,12 +45,6 @@ class RegisterUserForm(UserCreationForm):
             raise forms.ValidationError("Такой E-mail уже существует!")
         return email
 
-    def clean_code(self):
-        code = self.cleaned_data['code']
-        if Code.objects.get(code=code):
-            return code
-        raise forms.ValidationError("Неправильный код доступа!")
-
 
 class ProfileEditForm(forms.ModelForm):
     username = forms.CharField(disabled=True, label='Логин', widget=forms.TextInput(attrs={"class": "form_input"}))
@@ -78,7 +69,3 @@ class ProfilePasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={"class": "form_input"}))
     new_password1 = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={"class": "form_input"}))
     new_password2 = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={"class": "form_input"}))
-
-
-class CodeGeneratorForm(forms.Form):
-    email = forms.CharField(label="E-mail", widget=forms.TextInput(attrs={"class": "form_input"}))

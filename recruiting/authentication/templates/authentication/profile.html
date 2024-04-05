@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="profile">
+    <div class="user_banner">
+        <div class="user_avatar">
+        {% if object.photo %}
+            <p><img src="{{ object.photo.url }}" width="500" height="500"></p>
+        {% else %}
+            <p><img src="/media/users/default.jpg" ></p>
+        {% endif %}
+        </div>
+        <div class="user_nick">Имя пользователя: {{object.first_name}}</div>
+        <div class="edit_profile"><a href="{% url 'profile:edit' %}">Изменить профиль</a></div>
+    </div>
+    <div class="profile_info">
+        <div class="all_info">Общая информация</div>
+        <div class="profile_items">
+            <div class="id">ID: {{object.pk}}</div>
+            <div class="email">Email: {{object.email}}</div>
+            <div class="register_data">Дата регистрации: {{object.date_birth}}</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

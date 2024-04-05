@@ -1,0 +1,12 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>Title</title> {% endblock %}
+</head>
+<body>
+    <div class="item_home"><a href="{% url 'create_resume' %}">Создать резюме</a></div>
+    {% block content %} {% endblock %}
+</body>
+</html>
