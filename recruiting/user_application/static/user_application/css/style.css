@@ -1,0 +1,145 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    min-width: 1000px;
+    background-color: #F5F5F7;
+
+}
+.header{
+    background-color: #010101;
+    opacity: 90%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: white;
+}
+.header_wrapper{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav{
+    display: flex;
+    
+}
+.nav_link{
+    margin-right: 27px;
+    transition: color .2s ease;
+}
+.logo img{
+    height: 36px;
+    width: 36px;
+    display: block;
+}
+.container{
+    width: 1000px;
+    margin: 0 auto;
+}
+.content{
+    min-height: 94vh;
+}
+.footer{
+    min-height: 150px;
+    background-color: #010101;
+    opacity: 90%;
+}
+
+.container_reg_page{
+    width: 600px;
+    margin: 0 auto;
+}
+.reg_block{
+    min-height: 100vh;
+    border-left: 2px solid #010101;
+    border-right: 2px solid #010101;
+    background-color: white;
+}
+
+.form{
+    color: black; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+.form_input{
+    width: 350px; 
+    height: 50px;
+    background: white; 
+    border-radius: 15px; 
+    border: 1px solid black; 
+    color: black; 
+    font-size: 16px; 
+    margin: 0 auto;
+    margin-bottom:15px;
+}
+.input_submit{
+    width: 100px; 
+    height: 50px;
+    background-color: #010101; 
+    opacity: 80%;
+    border-radius: 15px; 
+    border: 1px solid black; 
+    color: white; 
+    font-size: 16px; 
+    margin: 0 auto;
+}
+
+.reg_block_title{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 200;
+}
+.form_label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    align-self: flex-start;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.reg_block_wrapper{
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+}
+.log_reg_link{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.log_reg_link:link, .log_reg_link:visited{
+    color: black;
+}
+.log_reg_link:hover, .log_reg_link:active{
+    color:rgb(165, 165, 165);
+}
+
+a{
+    text-decoration: none;
+}
+/* unvisited link */
+a:link {
+    color: white;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: white;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: rgba(199, 199, 199, 0.404);
+  }
+  
+  /* selected link */
+  a:active {
+    color: rgba(199, 199, 199, 0.404);
+  }

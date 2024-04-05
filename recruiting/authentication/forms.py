@@ -13,6 +13,16 @@ class LoginUserForm(AuthenticationForm):
         model = get_user_model()
         field = ['username', 'password']
 
+        widgets = {
+            'username': forms.TextInput(attrs={"class": "form_input"}),
+            'password': forms.TextInput(attrs={"class": "form_input"}),
+
+        }
+        labels = {
+            'username': 'Логин',
+            'password': 'Пароль',
+        }
+
 
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={"class": "form_input"}))
@@ -69,3 +79,6 @@ class ProfilePasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={"class": "form_input"}))
     new_password1 = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={"class": "form_input"}))
     new_password2 = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={"class": "form_input"}))
+
+
+

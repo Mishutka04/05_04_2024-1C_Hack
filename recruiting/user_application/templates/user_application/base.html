@@ -1,12 +1,47 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% block title %}<title>Title</title> {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="{% static 'user_application/css/2style.css' %}" rel="stylesheet" />
+    <title>Пробка</title>
 </head>
 <body>
-    <div class="item_home"><a href="{% url 'create_resume' %}">Создать резюме</a></div>
-    {% block content %} {% endblock %}
+    <header class = "header">
+        <div class = "container">
+           <div class = "header_wrapper">
+            <div class = "header_block">
+                <nav class = "nav">
+                    <a href="#" class = "nav_link">Создать резюме</a>
+                    <a href="#" class = "nav_link">Мои резюме</a>
+                </nav>
+            </div>
+
+            <a href="#" class="logo">
+                <img src="profile.svg" alt="profile">
+            </a>
+
+            <div class = "header_block">
+                <nav>
+                    <a href="#" class = "nav_link">Нужна помощь ?</a>
+                    <a href="#" class = "nav_link">Уведомления</a>
+                </nav>
+            </div>
+           </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            
+        </div>
+    </footer>
+    
 </body>
 </html>

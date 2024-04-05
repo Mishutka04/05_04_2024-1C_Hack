@@ -23,7 +23,8 @@ from recruiting import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('authentication/', include('authentication.urls', namespace="profile"))
+    path('authentication/', include('authentication.urls', namespace="profile")),
+    path('user/', include('user_application.urls', namespace="user_application"))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
