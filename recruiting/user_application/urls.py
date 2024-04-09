@@ -5,9 +5,13 @@ from user_application import views
 app_name = 'user_application'
 
 urlpatterns = [
-    path('create/', views.create_resume, name='create_resume'),
-    path('create/2', views.create_resume_2, name='create_resume_2'),
-    path('create/3', views.create_resume_3, name='create_resume_3'),
-    path('create/4', views.create_resume_4, name='create_resume_4'),
+    path('create/', views.CreateResume.as_view(), name='create_resume'),
+    path('create/profession/<int:pk>', views.ProfessionView.as_view(), name='create_profession'),
+    path('create/education/<int:pk>', views.EducationView.as_view(), name='create_education'),
+    path('create/about/<int:pk>', views.AboutView.as_view(), name='create_about'),
+    path('create/skills/<int:pk>', views.SkillsView.as_view(), name='create_skills'),
+    path('create/languages/<int:pk>', views.LanguagesView.as_view(), name='create_languages'),
+    path('create/course/<int:pk>', views.CourseView.as_view(), name='create_course'),
+
 ]
 

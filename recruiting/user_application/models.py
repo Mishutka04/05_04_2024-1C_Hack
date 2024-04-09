@@ -23,7 +23,7 @@ class City(models.Model):
 # Добавить __str__
 class Resume(models.Model):
     file = models.FileField(verbose_name='Готовое резюме', upload_to='upload/resume', null=True)
-    stage = models.CharField(choices=STATE, null=True, max_length=50)  # Сделать
+    stage = models.CharField(choices=STATE, max_length=50, default='Создание анкеты 222')  # Сделать
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
