@@ -1,0 +1,17 @@
+{% extends 'user_application/base.html' %}
+{% block content %}
+{% for res in resume %}
+    {% for prof in profession %}
+
+        {% if res.pk == prof.resume.pk %}
+
+            <p>{{prof.busyness}}</p>
+            <p>{{prof.salary}}</p>
+            <p>{{res.stage}}</p>
+            <a href="{% url 'user_application:check_resume' res.pk %}">Посмотреть резюме</a>
+<br/>
+        {% endif %}
+
+    {% endfor %}
+    {% endfor %}
+{% endblock %}

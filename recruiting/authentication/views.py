@@ -21,18 +21,6 @@ class LoginUser(LoginView):
         return reverse_lazy('user_application:create_resume')
 
 
-# def login_user(request):
-#    if request.method == "POST":
-#        form = LoginUserForm(request.POST)
-#        if form.is_valid():
-#            cd = form.cleaned_data
-#            user = authenticate(request, username=cd['username'], password=cd['password'])
-#            if user and user.is_active:
-#                login(request, user)
-#                return HttpResponseRedirect(reverse('subject'))
-#    else:
-#        form = LoginUserForm()
-#    return render(request, 'authentication/login.html', context={'form': form})
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'authentication/register.html'
@@ -70,20 +58,6 @@ class ProfilePasswordChange(PasswordChangeView):
     #    return get_object_or_404(Класс user, )
 
 
-def create_resume(request):
-    if request.method == "POST":
-        form = RegisterUserForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
-            user.save()
-            return render(request, 'authentication/register_done.html')
-    else:
-        form = RegisterUserForm()
-    return render(request, 'authentication/register.html', context={"form": form})
-
-
-#
 
 def logout_user(request):
     logout(request)

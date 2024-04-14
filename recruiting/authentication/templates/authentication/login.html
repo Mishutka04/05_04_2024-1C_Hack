@@ -2,7 +2,6 @@
 {% extends 'user_application/base.html' %}
 {% block content %}
 <div class="container_log_page">
-        <div class="log_block">
             <div class="log_block_wrapper">
                 <h1 class = "log_block_title">Войти в аккаунт</h1>
                 <form method="POST" class = "form">
@@ -13,14 +12,8 @@
                     <p ><label class="form_label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
                     <div class="form-error">{{ f.errors }}</div>
                     {% endfor %}
-                    <label for="f1" class="form_label">E-mail</label>
-                    <input type="text" class = "form_input" name = "f1">
-                    <label for="f2" class="form_label">Пароль</label>
-                    <input type="text" class = "form_input" name = "f2">
-                    <a href="#" class="log_reg_link">Ещё не зарегистрированы?</a>
                     <input type="submit" class = "input_submit" value="Войти">
                 </form>
             </div>
-        </div>
     </div>
 {% endblock %}

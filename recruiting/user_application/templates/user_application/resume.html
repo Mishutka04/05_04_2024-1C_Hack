@@ -1,0 +1,24 @@
+{% extends 'user_application/base.html' %}
+{% block content %}
+    <p>Профессия</p>
+    <p>{{profession.busyness}}</p>
+    <p>{{profession.salary}}</p>
+    <p>{{profession.work_schedule}}</p>
+<br/>
+    <p>Образование</p>
+    {% for edu in education %}
+    <p>{{edu.lvl}}</p>
+<p>{{edu.lvl_university}}</p>
+<p>{{edu.specialization}}</p>
+<p>{{edu.year_graduatio}}</p>
+{% endfor %}
+<br/>
+<p>Обо мне</p>
+<p>{{about.text}}</p>
+<br/>
+{% for lang in languages %}
+<p>{{lang.native}}</p>
+<p>{{lang.list_languages}}</p>
+{% endfor %}
+<p>{{resume.stage}}</p>
+{% endblock %}

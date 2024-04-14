@@ -4,44 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" href="{% static 'user_application/css/2style.css' %}" rel="stylesheet" />
-    <title>Пробка</title>
+    <link type="text/css" href="{% static 'user_application/css/style.css' %}" rel="stylesheet" />
+    {% block title %} <title>Резюме</title> {% endblock %}
 </head>
 <body>
-    <header class = "header">
-        <div class = "container">
-           <div class = "header_wrapper">
-            <div class = "header_block">
-                <nav class = "nav">
-                    <a href="#" class = "nav_link">Создать резюме</a>
-                    <a href="#" class = "nav_link">Мои резюме</a>
-                </nav>
+    <div class="base_page">
+        <div class="header">
+            <div class="left_item">
+                Task resume manager
             </div>
-
-            <a href="#" class="logo">
-                <img src="profile.svg" alt="profile">
-            </a>
-
-            <div class = "header_block">
-                <nav>
-                    <a href="#" class = "nav_link">Нужна помощь ?</a>
-                    <a href="#" class = "nav_link">Уведомления</a>
-                </nav>
+            <div class="right_item">
+                <div class="logo">Логотип</div>
+                <div class="name">Имя пользователя</div>
             </div>
-           </div>
         </div>
-    </header>
-    <div class="container">
-        <div class="content">
-            {% block content %} {% endblock %}
+        <div class="container">
+            <div class="left_navbar">
+                <div class="item_left_navbar"> Первый item</div>
+                <div class="item_left_navbar"> Первый item</div>
+                <div class="item_left_navbar"> Первый item</div>
+                <div class="item_left_navbar"> Первый item</div>
+                <div class="item_left_navbar"> Первый item</div>
+                <div class="item_left_navbar"> Первый item</div>
+                <div class="item_left_navbar"> Первый item</div>
+            </div>
+            <div class="content">
+                {% block content %} {% endblock %}
+            </div>
         </div>
+        <footer>
+            Контент
+        </footer>
     </div>
-
-    <footer>
-        <div class="footer">
-            
-        </div>
-    </footer>
-    
 </body>
 </html>
