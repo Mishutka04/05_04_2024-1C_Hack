@@ -1,24 +1,43 @@
 {% extends 'user_application/base.html' %}
 {% block content %}
-    <p>Профессия</p>
-    <p>{{profession.busyness}}</p>
-    <p>{{profession.salary}}</p>
-    <p>{{profession.work_schedule}}</p>
-<br/>
-    <p>Образование</p>
-    {% for edu in education %}
-    <p>{{edu.lvl}}</p>
-<p>{{edu.lvl_university}}</p>
-<p>{{edu.specialization}}</p>
-<p>{{edu.year_graduatio}}</p>
-{% endfor %}
-<br/>
-<p>Обо мне</p>
-<p>{{about.text}}</p>
-<br/>
-{% for lang in languages %}
-<p>{{lang.native}}</p>
-<p>{{lang.list_languages}}</p>
-{% endfor %}
-<p>{{resume.stage}}</p>
+    <div class="resume_items">
+        <div class="white_block">
+            <div class="item_me_resume_title">Профессия</div>
+            <div class="item_me_resume">{{profession.busyness}}</div>
+            <div class="item_me_resume">{{profession.salary}}</div>
+            <div class="item_me_resume">{{profession.work_schedule}}</div>
+        </div>
+    </div>
+    <div class="resume_items">
+        <div class="white_block">
+            <div class="item_me_resume_title">Образование</div>
+            {% for edu in education %}
+                <div class="item_me_resume">{{edu.lvl}}</div>
+                <div class="item_me_resume">{{edu.lvl_university}}</div>
+                <div class="item_me_resume">{{edu.specialization}}</div>
+                <div class="item_me_resume">{{edu.year_graduatio}}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="resume_items">
+        <div class="white_block">
+            <div class="item_me_resume_title">Обо мне</div>
+            <div class="item_me_resume">{{about.text}}</div>
+        </div>
+    </div>
+    <div class="resume_items">
+        <div class="white_block">
+            {% for lang in languages %}
+                <div class="item_me_resume_title">Языки</div>
+                <div class="item_me_resume">Родной: {{lang.native}}</div>
+                <div class="item_me_resume">Иностранный: {{lang.list_languages}}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="resume_items">
+        <div class="white_block">
+            <div class="item_me_resume_title">Стадия резюме</div>
+            <div class="item_me_resume">{{resume.stage}}</div>
+        </div>
+    </div>
 {% endblock %}

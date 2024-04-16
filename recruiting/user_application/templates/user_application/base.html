@@ -5,36 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" href="{% static 'user_application/css/style.css' %}" rel="stylesheet" />
-    {% block title %} <title>Резюме</title> {% endblock %}
 </head>
 <body>
     <div class="base_page">
-        <div class="header">
-            <div class="left_item">
-                Task resume manager
+        <div class="container_nav">
+            <div class="left_nav">
+                <div class="left_items">
+                    <div class="left_item">
+                        Создание резюме
+                    </div>
+                    <div class="left_item">
+                        Образование
+                    </div>
+                </div>
             </div>
-            <div class="right_item">
-                <div class="logo">Логотип</div>
-                <div class="name">Имя пользователя</div>
+            <div class="container">
+                <div class="header">
+                    <div class="left">
+                        <div class="item_left_navbar"> <a href="{% url 'user_application:create_resume' %}">Создание резюме </a></div>
+                        <div class="item_left_navbar"> <a href="{% url 'user_application:resume_list' %}">Мои резюме </a></div>
+                    </div>
+                    <div class="right">
+                        <div class="item_left_navbar"> Андрей</div>
+                        <div class="item_left_navbar"> Logo</div>
+                    </div>
+                </div>
+                <div class="content">
+                    {% block content %} {% endblock %}
+                </div>
             </div>
         </div>
-        <div class="container">
-            <div class="left_navbar">
-                <div class="item_left_navbar"> Первый item</div>
-                <div class="item_left_navbar"> Первый item</div>
-                <div class="item_left_navbar"> Первый item</div>
-                <div class="item_left_navbar"> Первый item</div>
-                <div class="item_left_navbar"> Первый item</div>
-                <div class="item_left_navbar"> Первый item</div>
-                <div class="item_left_navbar"> Первый item</div>
-            </div>
-            <div class="content">
-                {% block content %} {% endblock %}
-            </div>
-        </div>
-        <footer>
-            Контент
-        </footer>
     </div>
 </body>
 </html>

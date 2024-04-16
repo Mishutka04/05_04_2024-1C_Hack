@@ -1,15 +1,29 @@
 {% extends 'user_application/base.html' %}
-{% block title %} Создание резюме {% endblock %}
 {% block content %}
-<h1>Регистрация</h1>
+<div class="white_block">
+<h1>Создание резюме</h1>
     <form method="post">
     {% csrf_token %}
   <input type="hidden" name="next" value="{{ next }}"/>
-    <div class="form-error">{{ form.non_field_error }}</div>
-    {% for f in form %}
-    <p ><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
-    <p><button type="submit">Отправить</button> </p>
+    {% for field in form %}
+        {% if field.name == 'user' or  field.name == 'resume' %}
+        <div class="form-group">
+
+            {{field.as_hidden}}
+            <div>{{field}}</div>
+            <div class="error">{{field.errors}}</div>
+        </div>
+        {% else %}
+        <div class="form-group">
+            <div class="form_element">
+                <div class="form_label">{{field.label_tag}}</div>
+                <div class="form_pole">{{field}}</div>
+            </div>
+            <div class="error">{{field.errors}}</div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    <p><button class='accept' type="submit">Отправить</button> </p>
 </form>
+</div>
 {% endblock %}

@@ -23,7 +23,7 @@ class City(models.Model):
 # Добавить __str__
 class Resume(models.Model):
     file = models.FileField(verbose_name='Готовое резюме', upload_to='upload/resume', null=True)
-    stage = models.CharField(choices=STATE, max_length=50, default='Создание анкеты 222')  # Сделать
+    stage = models.CharField(choices=STATE, max_length=50, default='Создание анкеты')  # Сделать
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -63,9 +63,9 @@ class Portfolio(models.Model):
 
 class Education(models.Model):
     lvl = models.CharField(max_length=50, verbose_name="Уровень")
-    lvl_university = models.TextField(verbose_name="Учебное заведение")
-    faculty = models.TextField(verbose_name="Факультет")
-    specialization = models.TextField(verbose_name="Специализация")
+    lvl_university = models.CharField(max_length=50, verbose_name="Учебное заведение")
+    faculty = models.CharField(max_length=50, verbose_name="Факультет")
+    specialization = models.CharField(max_length=50, verbose_name="Специализация")
     year_graduatio = models.IntegerField(verbose_name="Год окончания")
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
@@ -77,9 +77,9 @@ class Languages(models.Model):
 
 
 class Course(models.Model):
-    name_course = models.TextField(verbose_name="Название курса")
-    organization = models.TextField(verbose_name="Проводившая организация")
-    specialization = models.TextField(verbose_name="Специализация")
+    name_course = models.CharField(max_length=100,verbose_name="Название курса")
+    organization = models.CharField(max_length=100,verbose_name="Проводившая организация")
+    specialization = models.CharField(max_length=100,verbose_name="Специализация")
     year_graduation = models.IntegerField(verbose_name="Год окончания")
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
