@@ -17,27 +17,7 @@ class CreateResume(FormView, LoginRequiredMixin):
 
     def form_valid(self, form):
         Event = form.save()
-        return redirect("user_application:select_job", pk=Event.pk)
-
-
-class JobView(FormView, LoginRequiredMixin):
-    form_class = JobForm
-    template_name = "user_application/create_resume.html"
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['pk'] = self.kwargs['pk']
-        context['title'] = "Выберите доступную профессию"
-        return context
-
-    def get_initial(self):
-        initial = super(JobView, self).get_initial()
-        if self.request.user.is_authenticated:
-            initial.update({'resume': Resume.objects.get(user=self.request.user, pk=self.kwargs['pk'])})
-        return initial
-
-    def form_valid(self, form):
-        return redirect("user_application:select_city", pk=self.kwargs['pk'])
+        return redirect("user_application:select_city", pk=Event.pk)
 
 
 class CityView(FormView, LoginRequiredMixin):
@@ -54,12 +34,10 @@ class CityView(FormView, LoginRequiredMixin):
         initial = super(CityView, self).get_initial()
         if self.request.user.is_authenticated:
             initial.update({'resume': Resume.objects.get(user=self.request.user, pk=self.kwargs['pk'])})
-            #Profession.objects.create()
         return initial
 
     def form_valid(self, form):
         Event = form.save()
-        print(Event)
         return redirect("user_application:create_profession", pk=self.kwargs['pk'])
 
 
@@ -70,6 +48,7 @@ class ProfessionView(FormView, LoginRequiredMixin):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['pk'] = self.kwargs['pk']
+        context['title'] = "Выберите профессию"
         return context
 
     def get_initial(self):
@@ -90,6 +69,7 @@ class EducationView(FormView, LoginRequiredMixin):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['pk'] = self.kwargs['pk']
+        context['title'] = "Выберите уровень образования"
         return context
 
     def get_initial(self):
@@ -130,6 +110,7 @@ class SkillsView(FormView, LoginRequiredMixin):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['pk'] = self.kwargs['pk']
+        context['title'] = "Выберите Skill"
         return context
 
     def get_initial(self):
@@ -150,6 +131,7 @@ class LanguagesView(FormView, LoginRequiredMixin):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['pk'] = self.kwargs['pk']
+        context['title'] = "Выберите язык"
         return context
 
     def get_initial(self):

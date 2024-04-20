@@ -44,12 +44,15 @@ class Comments(models.Model):
 class Job(models.Model):
     job = models.CharField(max_length=50, verbose_name="Специализация")
 
+    def __str__(self):
+        return self.job
+
 
 class Profession(models.Model):
     salary = models.IntegerField(verbose_name="Зарплата")
     busyness = models.CharField(max_length=50, verbose_name="Занятость")
     work_schedule = models.CharField(max_length=50, verbose_name="График работы")
-    job = models.OneToOneField(Job, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
     resume = models.OneToOneField(Resume, on_delete=models.CASCADE)
 
 
@@ -71,8 +74,11 @@ class Portfolio(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
 
+LVL = (('Высшее образование', 'Высшее образование'),)
+
+
 class Education(models.Model):
-    lvl = models.CharField(max_length=50, verbose_name="Уровень")
+    lvl = models.CharField(max_length=50, verbose_name="Уровень", choices=LVL)
     lvl_university = models.CharField(max_length=50, verbose_name="Учебное заведение")
     faculty = models.CharField(max_length=50, verbose_name="Факультет")
     specialization = models.CharField(max_length=50, verbose_name="Специализация")
@@ -80,9 +86,13 @@ class Education(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
 
+LANG = (('Русский', 'Русский'),
+        ('Английский', 'Английский'),)
+
+
 class Languages(models.Model):
-    native = models.CharField(max_length=50, verbose_name="Родной язык")
-    list_languages = models.CharField(max_length=50, verbose_name="Иностранные языки")
+    native = models.CharField(max_length=50, verbose_name="Родной язык", choices=LANG)
+    list_languages = models.CharField(max_length=50, verbose_name="Иностранные языки", choices=LANG, null=True)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
 

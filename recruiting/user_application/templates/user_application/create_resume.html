@@ -6,24 +6,30 @@
         <form method="post">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}" />
-            {% if title %}
-            <br/>
-                <h1>{{title}}</h1>
-                {% endif %}
-            {% for field in form %}
 
+            {% for field in form %}
             {% if field.name == 'user' or field.name == 'resume' %}
             <div class="form-group">
                 <div> {{field}}</div>
                 <div class="error">{{field.errors}}</div>
             </div>
             {% else %}
+
+            {% if field.name == 'name' or field.name == 'job' or field.name == 'lvl' or field.name == 'skill' or field.name == 'native' or field.name == 'list_languages'%}
+
+            {% if title %}
+            <br/>
+                <h3>{{title}}</h3>
+            {% endif %}
+            {% endif %}
+
             <div class="form-group">
                 <div class="form_element">
                     <div class="form_pole">{{field}}</div>
                 </div>
                 <div class="error">{{field.errors}}</div>
             </div>
+
             {% endif %}
             {% endfor %}
             <p><button class='btn btn-primary' type="submit">Отправить</button> </p>

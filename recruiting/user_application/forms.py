@@ -41,27 +41,6 @@ class CreateResumeForm(forms.ModelForm):
                    'file': forms.FileInput(attrs={"class": "form-control", "placeholder": "Готовое резюме"})}
 
 
-class JobForm(forms.ModelForm):
-    job = forms.ChoiceField(choices=())
-
-    def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
-        super(JobForm, self).__init__(*args, **kwargs)
-        job = Job.objects.all()
-        if job:
-            CHOICES = ()
-            for lst in job:
-            # list name and list address
-                CHOICES = CHOICES + ((lst.job, lst.job),)
-            self.fields['job'].choices = CHOICES
-            self.fields['job'].widget.attrs['class'] = 'form-control'
-
-    class Meta:
-        model = Job
-        fields = ['job']
-        widgets = {'job': forms.Select(attrs={"class": "form-control", "placeholder": "Готовое резюме"})}
-
-
 class CityForm(forms.ModelForm):
     class Meta:
         model = City
@@ -71,16 +50,18 @@ class CityForm(forms.ModelForm):
 
 
 class ProfessionForm(forms.ModelForm):
-    def __init__(self, item_id):
-        super(ProfessionForm, self).__init__()
-        self.fields['item_field'].queryset =
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     class Meta:
         model = Profession
         fields = '__all__'
         widgets = {'resume': forms.HiddenInput(),
                    'salary': forms.TextInput(attrs={"class": "form-control", "placeholder": "Зарплата"}),
                    'busyness': forms.TextInput(attrs={"class": "form-control", "placeholder": "Занятость"}),
-                   'work_schedule': forms.TextInput(attrs={"class": "form-control", "placeholder": "График работы"}), }
+                   'work_schedule': forms.TextInput(attrs={"class": "form-control", "placeholder": "График работы"}),
+                   'job': forms.Select(attrs={"class": "form-control", "placeholder": "График работы"}),
+                   }
 
 
 class EducationForm(forms.ModelForm):
@@ -88,7 +69,7 @@ class EducationForm(forms.ModelForm):
         model = Education
         fields = '__all__'
         widgets = {'resume': forms.HiddenInput(),
-                   'lvl': forms.TextInput(attrs={"class": "form-control", "placeholder": "Уровень образования"}),
+                   'lvl': forms.Select(attrs={"class": "form-control", "placeholder": "Уровень образования"}),
                    'lvl_university': forms.TextInput(
                        attrs={"class": "form-control", "placeholder": "Учебное заведение"}),
                    'faculty': forms.TextInput(attrs={"class": "form-control", "placeholder": "Факультет"}),
@@ -110,7 +91,7 @@ class SkillsForm(forms.ModelForm):
         model = Skills
         fields = '__all__'
         widgets = {'resume': forms.HiddenInput(),
-                   'skill': forms.Textarea(attrs={"class": "form-control", "placeholder": "Расспишите свои скиллы"})}
+                   'skill': forms.Select(attrs={"class": "form-control", "placeholder": "Расспишите свои скиллы"})}
 
 
 class LanguagesForm(forms.ModelForm):
@@ -118,8 +99,8 @@ class LanguagesForm(forms.ModelForm):
         model = Languages
         fields = '__all__'
         widgets = {'resume': forms.HiddenInput(),
-                   'native': forms.TextInput(attrs={"class": "form-control", "placeholder": "Родной язык"}),
-                   'list_languages': forms.TextInput(
+                   'native': forms.Select(attrs={"class": "form-control", "placeholder": "Родной язык"}),
+                   'list_languages': forms.Select(
                        attrs={"class": "form-control", "placeholder": "Иностранные языки"})}
 
 
