@@ -7,8 +7,8 @@ from user_application.models import Resume, Profession, Skills, Education, About
 
 
 class ProfileEditForm(forms.ModelForm):
-    username = forms.CharField(disabled=True, label='Логин', widget=forms.TextInput(attrs={"class": "form_input"}))
-    email = forms.CharField(disabled=True, label="E-mail", widget=forms.TextInput(attrs={"class": "form_input"}))
+    username = forms.CharField(disabled=True, label='Логин', widget=forms.TextInput(attrs={"class": "form-control"}))
+    email = forms.CharField(disabled=True, label="E-mail", widget=forms.TextInput(attrs={"class": "form-control"}))
     this_year = datetime.date.today().year
     date_birth = forms.DateField(widget=forms.SelectDateWidget(years=tuple(range(this_year - 100, this_year - 5))))
 
@@ -37,101 +37,62 @@ class CreateResumeForm(forms.ModelForm):
     class Meta:
         model = Resume
         fields = ['file', 'user']
-        widgets = {'user': forms.HiddenInput()}
+        widgets = {'user': forms.HiddenInput(), 'file': forms.FileInput(attrs={"class": "form-control", "placeholder": "Готовое резюме"})}
 
 
 class ProfessionForm(forms.ModelForm):
     class Meta:
         model = Profession
         fields = '__all__'
-        widgets = {'resume': forms.HiddenInput()}
+        widgets = {'resume': forms.HiddenInput(),
+                   'salary': forms.TextInput(attrs={"class": "form-control", "placeholder": "Зарплата"}),
+                   'busyness': forms.TextInput(attrs={"class": "form-control", "placeholder": "Занятость"}),
+                   'work_schedule': forms.TextInput(attrs={"class": "form-control", "placeholder": "График работы"}), }
 
 
 class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
         fields = '__all__'
-        widgets = {'resume': forms.HiddenInput()}
+        widgets = {'resume': forms.HiddenInput(),
+                   'lvl': forms.TextInput(attrs={"class": "form-control", "placeholder": "Уровень образования"}),
+                   'lvl_university': forms.TextInput(attrs={"class": "form-control", "placeholder": "Учебное заведение"}),
+                   'faculty': forms.TextInput(attrs={"class": "form-control", "placeholder": "Факультет"}),
+                   'specialization': forms.TextInput(attrs={"class": "form-control", "placeholder": "Специализация"}),
+                   'year_graduatio': forms.NumberInput(attrs={"class": "form-control", "placeholder": "Год окончания"}),}
 
 
 class AboutForm(forms.ModelForm):
     class Meta:
         model = About
         fields = '__all__'
-        widgets = {'resume': forms.HiddenInput()}
+        widgets = {'resume': forms.HiddenInput(),
+                   'text': forms.Textarea(attrs={"class": "form-control", "placeholder": "Расскажите о себе"}),}
 
 
 class SkillsForm(forms.ModelForm):
     class Meta:
         model = Skills
         fields = '__all__'
-        widgets = {'resume': forms.HiddenInput()}
+        widgets = {'resume': forms.HiddenInput(),
+                   'skill': forms.Textarea(attrs={"class": "form-control", "placeholder": "Расспишите свои скиллы"})}
 
 
 class LanguagesForm(forms.ModelForm):
     class Meta:
         model = Languages
         fields = '__all__'
-        widgets = {'resume': forms.HiddenInput()}
+        widgets = {'resume': forms.HiddenInput(),
+                   'native': forms.TextInput(attrs={"class": "form-control", "placeholder": "Родной язык"}),
+                   'list_languages': forms.TextInput(attrs={"class": "form-control", "placeholder": "Иностранные языки"})}
 
 
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
-        widgets = {'resume': forms.HiddenInput()}
-        # exclude = ('resume',)
-    # class CreateResumeForm(forms.Form):
-#    work = forms.ChoiceField(choices=WORK, label='Выберите профессию',
-#                             widget=forms.Select(attrs={"class": "form_input"}), required=True)
-#    salary = forms.IntegerField(label='Зарплата',
-#                                widget=forms.NumberInput(attrs={"class": "form_input"}))
-#    busyness = forms.ChoiceField(choices=BUSYNESS, label='Занятость',
-#                                 widget=forms.CheckboxSelectMultiple(attrs={"class": "form_input"}), required=True)
-#    work_schedule = forms.ChoiceField(choices=WORK_SCHEDULE, label='График работы',
-#                                      widget=forms.CheckboxSelectMultiple(attrs={"class": "form_input"}), required=True)
-#
-#
-# class AddEducationResumeForm(forms.Form):
-#    lvl_education = forms.ChoiceField(choices=EDUCATION, label='Уровень образования',
-#                                      widget=forms.CheckboxSelectMultiple(attrs={"class": "form_input"}))
-#    lvl_university = forms.CharField(label='Учебное заведение',
-#                                     widget=forms.TextInput(attrs={"class": "form_input"}))
-#    faculty = forms.CharField(label='Факультет',
-#                              widget=forms.TextInput(attrs={"class": "form_input"}))
-#    specialization = forms.CharField(label='Специализация',
-#                                     widget=forms.TextInput(attrs={"class": "form_input"}))
-#    year_graduatio = forms.IntegerField(max_value=2037, min_value=1950, label='Год окончания',
-#                                        widget=forms.NumberInput(attrs={"class": "form_input"}))
-#
-#
-# LANGUAGES = (("Русский", "Русский"), ("Английский", "Английский"))
-# SKILLS = (("Java", "Java"), ("Python", "Python"))
-#
-#
-# class AddAboutSkillPortfolioResumeForm(forms.Form):
-#    about = forms.CharField(label='Уровень образования',
-#                            widget=forms.TextInput(attrs={"class": "form_input"}))
-#    skill = forms.MultipleChoiceField(
-#            choices=SKILLS,
-#            initial='0',
-#            widget=forms.SelectMultiple(),
-#            required=True,
-#            label='Skill',
-#        )
-#    native = forms.ChoiceField(choices=LANGUAGES, label='Родной язык',
-#                               widget=forms.CheckboxSelectMultiple(attrs={"class": "form_input"}))
-#    list_languages = forms.ChoiceField(choices=LANGUAGES, label='Иностранный язык',
-#                                       widget=forms.CheckboxSelectMultiple(attrs={"class": "form_input"}))
-#
-#
-# class AddCourseResumeForm(forms.Form):
-#    name_course = forms.CharField(label='Название курса',
-#                                  widget=forms.TextInput(attrs={"class": "form_input"}))
-#    organization = forms.CharField(label='Проводившая организация',
-#                                   widget=forms.TextInput(attrs={"class": "form_input"}))
-#    specialization = forms.CharField(label='Специализация',
-#                                     widget=forms.TextInput(attrs={"class": "form_input"}))
-#    year_graduation = forms.IntegerField(max_value=2037, min_value=1950, label='Год окончания',
-#                                         widget=forms.NumberInput(attrs={"class": "form_input"}))
-#
+        widgets = {'resume': forms.HiddenInput(),
+                   'name_course': forms.TextInput(attrs={"class": "form-control", "placeholder": "Название курса"}),
+                   'organization': forms.TextInput(attrs={"class": "form-control", "placeholder": "Проводившая организация"}),
+                   'specialization': forms.TextInput(attrs={"class": "form-control", "placeholder": "Специализация"}),
+                   'year_graduation': forms.NumberInput(attrs={"class": "form-control", "placeholder": "Год окончания"})}

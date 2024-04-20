@@ -1,29 +1,29 @@
 {% extends 'user_application/base.html' %}
 {% block content %}
-<div class="white_block">
-<h1>Создание резюме</h1>
-    <form method="post">
-    {% csrf_token %}
-  <input type="hidden" name="next" value="{{ next }}"/>
-    {% for field in form %}
-        {% if field.name == 'user' or  field.name == 'resume' %}
-        <div class="form-group">
+<div class="container-fluid">
+    <div class="white_block">
+        <h1>Создание резюме</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% for field in form %}
+            {% if field.name == 'user' or field.name == 'resume' %}
+            <div class="form-group">
 
-            {{field.as_hidden}}
-            <div>{{field}}</div>
-            <div class="error">{{field.errors}}</div>
-        </div>
-        {% else %}
-        <div class="form-group">
-            <div class="form_element">
-                <div class="form_label">{{field.label_tag}}</div>
-                <div class="form_pole">{{field}}</div>
+                <div> {{field}}</div>
+                <div class="error">{{field.errors}}</div>
             </div>
-            <div class="error">{{field.errors}}</div>
-        </div>
-        {% endif %}
-        {% endfor %}
-    <p><button class='accept' type="submit">Отправить</button> </p>
-</form>
+            {% else %}
+            <div class="form-group">
+                <div class="form_element">
+                    <div class="form_pole">{{field}}</div>
+                </div>
+                <div class="error">{{field.errors}}</div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <p><button class='btn btn-primary' type="submit">Отправить</button> </p>
+        </form>
+    </div>
 </div>
 {% endblock %}

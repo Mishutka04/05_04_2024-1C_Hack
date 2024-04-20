@@ -72,7 +72,7 @@ class Education(models.Model):
 
 class Languages(models.Model):
     native = models.CharField(max_length=50, verbose_name="Родной язык")
-    list_languages = models.JSONField(verbose_name="Список языков")
+    list_languages = models.CharField(max_length=50, verbose_name="Иностранные языки")
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
 

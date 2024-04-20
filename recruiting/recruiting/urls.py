@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponseNotFound
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import path, include, reverse_lazy
 from recruiting import settings
 
@@ -32,7 +32,12 @@ if settings.DEBUG:
 
 
 def pageNotFound(request, exception):
-    return redirect('home', permanent=True)
+    return render(request, "user_application/404.html")
 
 
+def pagehandler500(request, *args, **argv):
+    return render(request, "user_application/404.html")
+
+
+handler500 = pagehandler500
 handler404 = pageNotFound

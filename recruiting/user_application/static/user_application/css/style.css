@@ -1,104 +1,162 @@
-body{
-  overflow-x: hidden;
-  margin: 0;
-  font-size: 24px;
-}
-.base_page, .container {
-  display: flex; /* Отображение элементов */
-  flex-direction: column; /* Направление по вертикали */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto&family=Playfair+Display&display=swap");
 
-}
-.left_nav{
-    display: flex; /* Отображение элементов */
-    flex-direction: column; /* Направление по вертикали */
-    width: 200px;
-    box-shadow: 26px 0px 8px 0px rgba(34, 60, 80, 0.2);
+html {
+    scroll-behavior: smooth;
 }
 
-.container{
-    background: #EEEFF1;
-    width: 100%;
-
-
-}
-.container_nav{
-    height: 100%;
-}
-.container_nav, .header, .left, .right, .form_element{
-    display: flex; /* Отображение элементов */
-    flex-direction: row; /* Направление по вертикали */
-}
-.item_left_navbar, .content{
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-}
-.header{
-    justify-content: space-between;
-}
-.left_item{
-    margin-left: 10px;
-    margin-top: 10px;
-}
-.white_block{
-
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-    background: #FFFFFF;
-    display: flex; /* Отображение элементов */
-    flex-direction: column; /* Направление по вертикали */
-}
-.accept {
-  background-color: #04AA6D; /* Green */
-  border: none;
-  color: white;
-  padding: 7px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 24px;
-}
-.check_resume {
-  background-color: #04AA6D; /* Green */
-  border: none;
-  color: white;
-  padding: 7px 16px;
-  text-align: center;
-  display: inline-block;
-  font-size: 8px;
-  width: 250px;
-}
- a{
-text-decoration: none;
-
-}
-.item_left_navbar a{
-color: #000000;
-}
-.check_resume a{
-color: #FFFFFF;
-font-size: 24px;
+body {
+    font-family: "Roboto", sans-serif;
+    color: #6f6f6f;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    position: relative;
+    line-height: 1.7;
+    background-color: #f8f6ff;
 }
 
-.form_label{
-    margin-right: 10px;
+img {
+    max-width: 100%;
+    height: auto;
 }
-.form-group{
-    margin-top: 10px;
-}
-.resume_list{
-    display: flex; /* Отображение элементов */
-    flex-direction: column; /* Направление по вертикали */
-}
-.check_resume, .item_resume{
-    margin-top: 5px;
-    margin-bottom: 5px;
 
+h1 {
+    font-size: 62px;
 }
-.resume_items{
-    padding-bottom: 20px;
+
+h2 {
+    font-size: 32px;
 }
-.item_me_resume_title{
-    font-size: 30px;
+
+@media (max-width: 991px) {
+    h2 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 575px) {
+    h2 {
+        font-size: 28px;
+    }
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+@media (max-width: 767px) {
+    h4 {
+        font-size: 20px;
+    }
+}
+
+h5 {
+    font-size: 20px;
+}
+
+@media (max-width: 767px) {
+    h5 {
+        font-size: 18px;
+    }
+}
+
+h6 {
+    font-size: 18px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Poppins", sans-serif;
+    color: #525252;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.4;
+}
+
+h1>a,
+h2>a,
+h3>a,
+h4>a,
+h5>a,
+h6>a {
+    font-family: "Poppins", sans-serif;
+    color: #525252;
+    font-weight: 600;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    line-height: 1.4;
+}
+
+p,
+li,
+span {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.cmn-btn {
+    padding: 12px 35px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: #6e41ff;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.15);
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #ffffff;
+}
+
+.cmn-btn:hover {
+    color: #ffffff;
+    background-color: #5b28ff;
+}
+
+.error {
+    position: relative;
+    padding: 120px 0;
+}
+
+.error .title {
+    font-size: 42px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 480px) {
+    .error .title {
+        font-size: 32px;
+    }
+}
+
+.error .title b {
+    font-size: 72px;
+    color: #f45570;
+}
+
+.error p {
+    font-size: 18px;
 }
