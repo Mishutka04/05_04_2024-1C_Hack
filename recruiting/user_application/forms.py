@@ -3,7 +3,7 @@ import datetime
 from django import forms
 from django.contrib.auth import get_user_model
 
-from user_application.models import Resume, Profession, Skills, Education, About, Languages, Course
+from user_application.models import Resume, Profession, Skills, Education, About, Languages, Course, City, Job
 
 
 class ProfileEditForm(forms.ModelForm):
@@ -37,10 +37,43 @@ class CreateResumeForm(forms.ModelForm):
     class Meta:
         model = Resume
         fields = ['file', 'user']
-        widgets = {'user': forms.HiddenInput(), 'file': forms.FileInput(attrs={"class": "form-control", "placeholder": "Готовое резюме"})}
+        widgets = {'user': forms.HiddenInput(),
+                   'file': forms.FileInput(attrs={"class": "form-control", "placeholder": "Готовое резюме"})}
+
+
+class JobForm(forms.ModelForm):
+    job = forms.ChoiceField(choices=())
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(JobForm, self).__init__(*args, **kwargs)
+        job = Job.objects.all()
+        if job:
+            CHOICES = ()
+            for lst in job:
+            # list name and list address
+                CHOICES = CHOICES + ((lst.job, lst.job),)
+            self.fields['job'].choices = CHOICES
+            self.fields['job'].widget.attrs['class'] = 'form-control'
+
+    class Meta:
+        model = Job
+        fields = ['job']
+        widgets = {'job': forms.Select(attrs={"class": "form-control", "placeholder": "Готовое резюме"})}
+
+
+class CityForm(forms.ModelForm):
+    class Meta:
+        model = City
+        fields = ['name', 'resume']
+        widgets = {'resume': forms.HiddenInput(),
+                   'name': forms.Select(attrs={"class": "form-control", "placeholder": "Готовое резюме"})}
 
 
 class ProfessionForm(forms.ModelForm):
+    def __init__(self, item_id):
+        super(ProfessionForm, self).__init__()
+        self.fields['item_field'].queryset =
     class Meta:
         model = Profession
         fields = '__all__'
@@ -56,10 +89,12 @@ class EducationForm(forms.ModelForm):
         fields = '__all__'
         widgets = {'resume': forms.HiddenInput(),
                    'lvl': forms.TextInput(attrs={"class": "form-control", "placeholder": "Уровень образования"}),
-                   'lvl_university': forms.TextInput(attrs={"class": "form-control", "placeholder": "Учебное заведение"}),
+                   'lvl_university': forms.TextInput(
+                       attrs={"class": "form-control", "placeholder": "Учебное заведение"}),
                    'faculty': forms.TextInput(attrs={"class": "form-control", "placeholder": "Факультет"}),
                    'specialization': forms.TextInput(attrs={"class": "form-control", "placeholder": "Специализация"}),
-                   'year_graduatio': forms.NumberInput(attrs={"class": "form-control", "placeholder": "Год окончания"}),}
+                   'year_graduatio': forms.NumberInput(
+                       attrs={"class": "form-control", "placeholder": "Год окончания"}), }
 
 
 class AboutForm(forms.ModelForm):
@@ -67,7 +102,7 @@ class AboutForm(forms.ModelForm):
         model = About
         fields = '__all__'
         widgets = {'resume': forms.HiddenInput(),
-                   'text': forms.Textarea(attrs={"class": "form-control", "placeholder": "Расскажите о себе"}),}
+                   'text': forms.Textarea(attrs={"class": "form-control", "placeholder": "Расскажите о себе"}), }
 
 
 class SkillsForm(forms.ModelForm):
@@ -84,7 +119,8 @@ class LanguagesForm(forms.ModelForm):
         fields = '__all__'
         widgets = {'resume': forms.HiddenInput(),
                    'native': forms.TextInput(attrs={"class": "form-control", "placeholder": "Родной язык"}),
-                   'list_languages': forms.TextInput(attrs={"class": "form-control", "placeholder": "Иностранные языки"})}
+                   'list_languages': forms.TextInput(
+                       attrs={"class": "form-control", "placeholder": "Иностранные языки"})}
 
 
 class CourseForm(forms.ModelForm):
@@ -93,6 +129,8 @@ class CourseForm(forms.ModelForm):
         fields = '__all__'
         widgets = {'resume': forms.HiddenInput(),
                    'name_course': forms.TextInput(attrs={"class": "form-control", "placeholder": "Название курса"}),
-                   'organization': forms.TextInput(attrs={"class": "form-control", "placeholder": "Проводившая организация"}),
+                   'organization': forms.TextInput(
+                       attrs={"class": "form-control", "placeholder": "Проводившая организация"}),
                    'specialization': forms.TextInput(attrs={"class": "form-control", "placeholder": "Специализация"}),
-                   'year_graduation': forms.NumberInput(attrs={"class": "form-control", "placeholder": "Год окончания"})}
+                   'year_graduation': forms.NumberInput(
+                       attrs={"class": "form-control", "placeholder": "Год окончания"})}

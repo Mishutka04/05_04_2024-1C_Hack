@@ -51,14 +51,13 @@
 
           <div class="d-none d-md-inline-block">
             <a href="{% url 'user_application:create_resume' %}"
-               class="header-item">Создание Резюме</a>
+               class="header-item">Просмотреть резюме</a>
           </div>
-
           <div class="d-inline-block">
             <h5 class="header-item m-0">
               {% if user.is_authenticated %}
               <a href="#" class="header-item">User: {{user.username}}</a>
-              <div class="d-none d-md-inline-block">
+                <div class="d-none d-md-inline-block">
             <a href="{% url 'profile:logout' %}"
                class="header-item">Выйти</a>
           </div>
@@ -79,25 +78,43 @@
         <div id="sidebar-menu">
           <!-- Left Menu Start -->
           <ul class="metismenu list-unstyled" id="side-menu">
-            <li class="menu-title">Меню навигации</li>
+            <li class="menu-title">Меню рассмотрения резюме</li>
             <li>
               <a href="{% url 'user_application:create_resume' %}" class="waves-effect">
                  <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px"/>
-                <span>Создать резюме</span>
+                <span>Неразобранные</span>
               </a>
             </li>
 
             <li>
               <a href="{% url 'user_application:resume_list' %}" class="waves-effect">
                  <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px"/>
-                <span>Посмотреть резюме</span>
+                <span>Телефонное интервью</span>
               </a>
             </li>
 
             <li>
               <a href="{% url 'profile:profile' %}" class="waves-effect">
                 <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px"/>
-                <span>Профиль</span>
+                <span>Интервью</span>
+              </a>
+            </li>
+              <li>
+              <a href="{% url 'profile:profile' %}" class="waves-effect">
+                <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px"/>
+                <span>Предложение о работе</span>
+              </a>
+            </li>
+              <li>
+              <a href="{% url 'profile:profile' %}" class="waves-effect">
+                <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px"/>
+                <span>Подписание документов</span>
+              </a>
+            </li>
+              <li>
+              <a href="{% url 'profile:profile' %}" class="waves-effect">
+                <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px"/>
+                <span>Отказ</span>
               </a>
             </li>
 
@@ -124,7 +141,10 @@
                     <div class="d-xl-flex">
                       <div class="w-100">
                         <div>
-                            {% block content %}{% endblock %}
+                            {% block content %}
+
+                            <h1>Staff Меню</h1>
+                            {% endblock %}
                           <!-- intro start -->
 
                       </div>

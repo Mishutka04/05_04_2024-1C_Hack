@@ -28,6 +28,16 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
+                <h6 class="mb-0">Город проживания:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{city.name}}
+
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
                 <h6 class="mb-0">График работы:</h6>
               </div>
               <div class="col-sm-9 text-secondary">
@@ -66,9 +76,10 @@
               </div>
               <div class="col-sm-9 text-secondary">
                 {% for lang in languages %}
-                Родной язык: {{lang.native}}<br />
-                Иностранный язык: {{lang.list_languages}}
+                Родной язык: {{lang.native}}
                 <hr>
+                Иностранный язык: {{lang.list_languages}}
+
                 {% endfor %}
               </div>
             </div>

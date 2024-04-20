@@ -1,0 +1,60 @@
+{% extends 'staff_application/base_for_staff.html' %}
+{% block content %}
+<div class="container">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md">
+        <div class="card mb-3">
+          <div class="card-body">
+            {% for res in resume %}
+            {% for prof in profession %}
+            {% if res.pk == prof.resume.pk %}
+            <h1>Резюме</h1>
+            <br/>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Должность:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{prof.work_schedule}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Желаемая зарплата:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{prof.salary}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Стадия рассмотрения анкеты:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{res.stage}}
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <a class="btn btn-info " target="__blank"
+                  href="{% url 'user_application:check_resume' res.pk %}">Посмотреть резюме</a>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <br/>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

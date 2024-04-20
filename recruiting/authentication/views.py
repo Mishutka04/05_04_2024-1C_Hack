@@ -58,7 +58,6 @@ class ProfilePasswordChange(PasswordChangeView):
     #    return get_object_or_404(Класс user, )
 
 
-
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect(reverse('subject'))
+    return HttpResponseRedirect(reverse('profile:login'))

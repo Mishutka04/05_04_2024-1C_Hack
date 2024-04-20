@@ -11,13 +11,7 @@ STATE = (("Создание анкеты", "Создание анкеты"),
          ("5", "Оффер"),
          ("6", "Трудоустройство"),)
 
-
-class City(models.Model):
-    name = models.CharField(max_length=50, verbose_name="Название города")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.name
+CITY = (('Москва', 'Москва'),)
 
 
 # Добавить __str__
@@ -27,27 +21,43 @@ class Resume(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.stage
+        return str(self.pk)
+
+
+class City(models.Model):
+    name = models.CharField(choices=CITY, max_length=50, verbose_name="Название города")
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class HR(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    resume = models.OneToOneField(Resume, on_delete=models.CASCADE)
 
 
 class Comments(models.Model):
     pass
 
 
+class Job(models.Model):
+    job = models.CharField(max_length=50, verbose_name="Специализация")
+
+
 class Profession(models.Model):
     salary = models.IntegerField(verbose_name="Зарплата")
     busyness = models.CharField(max_length=50, verbose_name="Занятость")
     work_schedule = models.CharField(max_length=50, verbose_name="График работы")
+    job = models.OneToOneField(Job, on_delete=models.CASCADE)
     resume = models.OneToOneField(Resume, on_delete=models.CASCADE)
 
 
-class Professions_type(models.Model):
-    job_name = models.CharField(max_length=50, verbose_name="Специализация")
-    profession = models.OneToOneField(Profession, on_delete=models.CASCADE)
+SKILLS_CHOICES = (('Python', 'Python'),)
 
 
 class Skills(models.Model):
-    skill = models.TextField(verbose_name="Список skills")
+    skill = models.CharField(choices=SKILLS_CHOICES, verbose_name="Список skills", max_length=50)
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 
 
@@ -77,9 +87,9 @@ class Languages(models.Model):
 
 
 class Course(models.Model):
-    name_course = models.CharField(max_length=100,verbose_name="Название курса")
-    organization = models.CharField(max_length=100,verbose_name="Проводившая организация")
-    specialization = models.CharField(max_length=100,verbose_name="Специализация")
+    name_course = models.CharField(max_length=100, verbose_name="Название курса")
+    organization = models.CharField(max_length=100, verbose_name="Проводившая организация")
+    specialization = models.CharField(max_length=100, verbose_name="Специализация")
     year_graduation = models.IntegerField(verbose_name="Год окончания")
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 

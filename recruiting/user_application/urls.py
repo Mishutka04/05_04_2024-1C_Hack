@@ -6,6 +6,8 @@ app_name = 'user_application'
 
 urlpatterns = [
     path('create/', views.CreateResume.as_view(), name='create_resume'),
+    path('create/city/<int:pk>', views.CityView.as_view(), name='select_city'),
+    path('create/job/<int:pk>', views.JobView.as_view(), name='select_job'),
     path('create/profession/<int:pk>', views.ProfessionView.as_view(), name='create_profession'),
     path('create/education/<int:pk>', views.EducationView.as_view(), name='create_education'),
     path('create/about/<int:pk>', views.AboutView.as_view(), name='create_about'),
