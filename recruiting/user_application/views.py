@@ -1,13 +1,14 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import FormView, ListView
 from user_application.forms import *
 from user_application.models import Resume, Profession, About, Languages, Education
 
 
-class CreateResume(FormView, LoginRequiredMixin):
+class CreateResume(FormView, LoginRequiredMixin, PermissionRequiredMixin):
     form_class = CreateResumeForm
     template_name = "user_application/create_resume.html"
+    permission_required = ["user_application.add_resume"]
 
     def get_initial(self):
         initial = super(CreateResume, self).get_initial()
@@ -20,9 +21,10 @@ class CreateResume(FormView, LoginRequiredMixin):
         return redirect("user_application:select_city", pk=Event.pk)
 
 
-class CityView(FormView, LoginRequiredMixin):
+class CityView(FormView, LoginRequiredMixin, PermissionRequiredMixin):
     form_class = CityForm
     template_name = "user_application/create_resume.html"
+    permission_required = 'user_application.add_city'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

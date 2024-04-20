@@ -1,6 +1,6 @@
 from django.contrib.auth import logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.models import Group
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -16,8 +16,10 @@ from authentication.forms import LoginUserForm, RegisterUserForm, ProfileEditFor
 class LoginUser(LoginView):
     form_class = LoginUserForm
     template_name = "authentication/login.html"
+    redirect_authenticated_user = True
 
     def get_success_url(self):
+
         return reverse_lazy('user_application:create_resume')
 
 
@@ -25,6 +27,19 @@ class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'authentication/register.html'
     success_url = reverse_lazy('profile:login')
+    redirect_authenticated_user = True
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('user_application:create_resume'))
+        return super(RegisterUser, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        group = Group.objects.get(name='user')
+        user.groups.add(group)
+
+        return super(RegisterUser, self).form_valid(form)
 
 
 class ProfileEdit(LoginRequiredMixin, UpdateView):
