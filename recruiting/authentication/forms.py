@@ -67,21 +67,16 @@ class RegisterUserForm(UserCreationForm):
 
 
 class ProfileEditForm(forms.ModelForm):
-    username = forms.CharField(disabled=True, label='Логин', widget=forms.TextInput(attrs={"class": "form_input"}))
-    email = forms.CharField(disabled=True, label="E-mail", widget=forms.TextInput(attrs={"class": "form_input"}))
-    this_year = datetime.date.today().year
-    date_birth = forms.DateField(widget=forms.SelectDateWidget(years=tuple(range(this_year - 100, this_year - 5))))
-
     class Meta:
         model = get_user_model()
-        fields = ['photo', 'username', 'date_birth', 'email', 'first_name', 'last_name']
+        fields = ['first_name', 'last_name']
         labels = {
             'first_name': 'Имя',
             'last_name': 'Никнейм',
         }  # Метки для полей
         widgets = {
-            'first_name': forms.TextInput(attrs={"class": "form_input"}),
-            'last_name': forms.TextInput(attrs={"class": "form_input"}),
+            'first_name': forms.TextInput(attrs={"class": "form-control", "placeholder": "Начальное имя"}),
+            'last_name': forms.TextInput(attrs={"class": "form-control", "placeholder": "Псевдоним"}),
         }
 
 

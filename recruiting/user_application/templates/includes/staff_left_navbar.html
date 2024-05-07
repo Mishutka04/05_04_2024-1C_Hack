@@ -1,0 +1,49 @@
+{% load static %}
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+  <div data-simplebar class="h-100">
+    <!--- Sidemenu -->
+    <div id="sidebar-menu">
+      <!-- Left Menu Start -->
+      <ul class="metismenu list-unstyled" id="side-menu">
+        <li class="menu-title">Меню навигации</li>
+        <li>
+          <a href="{% url 'staff:resume_stage' 'nerasobran' %}" class="waves-effect">
+            <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px" />
+            <span>Неразобранные</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'staff:resume_stage' 'phone_interview' %}" class="waves-effect">
+            <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px" />
+            <span>Телефонное интервью</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'staff:resume_stage' 'interview' %}" class="waves-effect">
+            <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px" />
+            <span>Собеседование</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'staff:resume_stage' 'proposal' %}" class="waves-effect">
+            <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px" />
+            <span>Предложение о работе</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'staff:resume_stage' 'rejection' %}" class="waves-effect">
+            <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px" />
+            <span>Отказ</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+    <!-- Sidebar -->
+  </div>
+</div>

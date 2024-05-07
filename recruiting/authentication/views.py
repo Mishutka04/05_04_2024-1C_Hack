@@ -19,8 +19,12 @@ class LoginUser(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-
-        return reverse_lazy('user_application:create_resume')
+        group = self.request.user.groups.get(name__in=['hr', 'user']).name
+        print(group)
+        if 'user' in group:
+            return reverse_lazy('user_application:create_resume')
+        elif 'hr' in group:
+            return reverse_lazy('staff:resume_list')
 
 
 class RegisterUser(CreateView):
@@ -49,7 +53,7 @@ class ProfileEdit(LoginRequiredMixin, UpdateView):
     template_name = 'authentication/profile_edit.html'
 
     def get_success_url(self):  # Перенаправление
-        return reverse_lazy('profile:edit')
+        return render(self.request, 'authentication/accept_profile.html')
 
     def get_object(self, queryset=None):
         return self.request.user

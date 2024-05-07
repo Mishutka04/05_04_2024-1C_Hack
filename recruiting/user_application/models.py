@@ -1,23 +1,24 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
-
 from authentication.models import User
 
 STATE = (("Создание анкеты", "Создание анкеты"),
-         ("Рассмотрение анкеты", "Рассмотрение анкеты"),
-         ("Первичное интервью", "Первичное интервью"),
-         ("3", "Интервью с заказчиком"),
-         ("4", "Сбор рекомендаций"),
-         ("5", "Оффер"),
-         ("6", "Трудоустройство"),)
+         ("Телефонное интервью", "Телефонное интервью"),
+         ("Собеседование", "Собеседование"),
+         ("Предложение о работе", "Предложение о работе"),
+         ("Отказ", "Отказ"))
 
 CITY = (('Москва', 'Москва'),)
+
+
+class HR(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 # Добавить __str__
 class Resume(models.Model):
     file = models.FileField(verbose_name='Готовое резюме', upload_to='upload/resume', null=True)
     stage = models.CharField(choices=STATE, max_length=50, default='Создание анкеты')  # Сделать
+    hr = models.ForeignKey(HR, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -30,15 +31,6 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class HR(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    resume = models.OneToOneField(Resume, on_delete=models.CASCADE)
-
-
-class Comments(models.Model):
-    pass
 
 
 class Job(models.Model):

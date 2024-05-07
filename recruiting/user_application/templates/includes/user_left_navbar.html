@@ -1,0 +1,20 @@
+{% load static %}
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+  <div data-simplebar class="h-100">
+    <!--- Sidemenu -->
+    <div id="sidebar-menu">
+      <!-- Left Menu Start -->
+      <ul class="metismenu list-unstyled" id="side-menu">
+        <li class="menu-title">Меню навигации</li>
+        <li>
+          <a href="{% url 'user_application:create_resume' %}" class="waves-effect">
+            <img src="{% static 'user_application/images/search.png' %}" alt='Hi!' width="30px" height="30px" />
+            <span>Качественное резюме</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Sidebar -->
+  </div>
+</div>

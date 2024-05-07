@@ -2,26 +2,18 @@
 {% block content %}
 <div class="container-fluid">
     <div class="white_block">
-        <h1>Изменение профиля</h1>
+        <h1>Комментарий</h1>
         <form method="post">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}" />
 
             {% for field in form %}
-            {% if field.name == 'user' or field.name == 'resume' %}
+            {% if field.name == 'hr' or field.name == 'stage' %}
             <div class="form-group">
                 <div> {{field}}</div>
                 <div class="error">{{field.errors}}</div>
             </div>
             {% else %}
-
-            {% if field.name == 'name' or field.name == 'job' or field.name == 'lvl' or field.name == 'skill' or field.name == 'native' or field.name == 'list_languages'%}
-
-            {% if title %}
-            <br/>
-                <h3>{{title}}</h3>
-            {% endif %}
-            {% endif %}
 
             <div class="form-group">
                 <div class="form_element">
@@ -32,10 +24,8 @@
 
             {% endif %}
             {% endfor %}
-            <p><button class='btn btn-primary' type="submit">Сохранить изменения</button> </p>
+            <p><button class='btn btn-primary' type="submit">Отправить</button> </p>
         </form>
     </div>
 </div>
 {% endblock %}
-
-

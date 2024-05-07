@@ -1,0 +1,47 @@
+<header id="page-topbar">
+  <div class="navbar-header">
+    <div class="d-flex">
+      <!-- LOGO -->
+      <div class="navbar-brand-box">
+        <a href="#" class="logo logo-light">
+          <span class="logo-sm">
+            <img src="assets/images/logo-light.png" alt="" height="25">
+          </span>
+          <span class="logo-lg">
+            <img src="assets/images/logo-light.png" alt="" height="20"> <span class="badge badge-soft-success ml-2">My
+              Head Hunter site</span>
+          </span>
+        </a>
+      </div>
+
+      <button type="button" class="btn btn-sm px-3 font-size-24
+                            header-item waves-effect d-lg-none" id="vertical-menu-btn">
+        <i class="mdi mdi-menu"></i>
+      </button>
+
+
+    </div>
+
+    <div class="d-flex">
+
+
+      <div class="d-none d-md-inline-block">
+        <a href="{% url 'staff:resume_list' %}" class="header-item">Посмотреть резюме</a>
+      </div>
+
+      <div class="d-inline-block">
+        <h5 class="header-item m-0">
+          {% if user.is_authenticated %}
+          <a href="{% url 'profile:profile' %}" class="header-item">User: {{user.username}} </a>
+
+          <div class="d-none d-md-inline-block">
+            <a href="{% url 'profile:logout' %}" class="header-item">Выйти</a>
+          </div>
+          {% else %}
+          <a href="#" class="header-item">Зарегистрироваться</a>
+          {% endif %}
+        </h5>
+      </div>
+    </div>
+  </div>
+</header>

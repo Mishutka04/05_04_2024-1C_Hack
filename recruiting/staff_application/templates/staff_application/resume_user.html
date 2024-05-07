@@ -1,0 +1,140 @@
+{% extends 'user_application/base.html' %}
+{% block content %}
+<div class="container">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Кандидат:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{resume.user}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Профессия:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{profession.busyness}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Желаемая зарплата:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{profession.salary}}
+
+
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Город проживания:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{city.name}}
+
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">График работы:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{profession.work_schedule}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Образование:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {% for edu in education %}
+                Уровень обучения: {{edu.lvl}}<br />
+                Учебное заведение: {{edu.lvl_university}}<br />
+                Факультет: {{edu.faculty}}<br />
+                Специализация: {{edu.specialization}}<br />
+                Год окончания: {{edu.year_graduatio}}
+                <hr>
+                {% endfor %}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Обо мне:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{about.text}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Языки:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {% for lang in languages %}
+                Родной язык: {{lang.native}}
+                <hr>
+                Иностранный язык: {{lang.list_languages}}
+
+                {% endfor %}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Стадия рассмотрения резюме:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{resume.stage}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Комментарии:</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {% for comment in comments %}
+                Стадия: <b>{{comment.stage}}</b> <br> HR:<b>{{comment.hr.user}}</b><br> Отзыв: <b> {{comment.comment}}</b>
+                <hr>
+                {% endfor %}
+              </div>
+            </div>
+            <hr>
+            {% if resume.stage != 'Предложение о работе' and resume.stage != 'Отказ' %}
+            <div class="row">
+              <div class="col-sm-4">
+                <a class="btn btn-info " target="__blank"
+                  href="{% url 'staff:add_comment' resume.pk %}">Добавить комментарий</a>
+              </div>
+              <div class="col-sm-4 text-secondary">
+                <a class="btn btn-info " target="__blank"
+                  href="{% url 'staff:resume_new_stage' resume.pk %}">Перевести резюме на новую стадию</a>
+              </div>
+              <div class="col-sm-4 text-secondary">
+                <a class="btn btn-info " target="__blank"
+                  href="{% url 'staff:resume_rejection' resume.pk %}">Отказ</a>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
